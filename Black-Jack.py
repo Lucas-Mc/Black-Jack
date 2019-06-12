@@ -7,46 +7,36 @@ from card import Card
 dealer = Dealer()
 # Initialize a deck object
 deck = Deck()
-print(deck)
-# Start by shuffling the deck
-deck.shuffle()
-print(deck)
 
 # Initialize two players for the game
 player1 = Player()
 player2 = Player()
-print(player1.cards)
-print(player2.cards)
 
 # Receive a new card from the dealer
 new_card = dealer.deal()
 player1.receive_card(new_card)
 new_card = dealer.deal()
 player2.receive_card(new_card)
-#print(player1.cards)
-#print(player2.cards)
 
-for c in player1.cards:
-    print(Card.get_suit(c))
-    print(Card.get_value(c))
-
-for c in player2.cards:
-    print(Card.get_suit(c))
-    print(Card.get_value(c))
+# Show their hands after one card each
+print("\n")
+print("First Deal:")
+print("Player 1:")
+player1.print_cards()
+print("Player 2:")
+player2.print_cards()
 
 # Receive a new card from the dealer
 new_card = dealer.deal()
 player1.receive_card(new_card)
 new_card = dealer.deal()
 player2.receive_card(new_card)
-#print(player1.cards)
-#print(player2.cards)
+print("\n")
 
-for c in player1.cards:
-    print(Card.get_suit(c))
-    print(Card.get_value(c))
-
-for c in player2.cards:
-    print(Card.get_suit(c))
-    print(Card.get_value(c))
-
+# Show their hands after two cards each
+print("Second Deal:")
+print("Player 1:")
+player1.print_cards()
+print("Player 2:")
+player2.print_cards()
+print("\n")

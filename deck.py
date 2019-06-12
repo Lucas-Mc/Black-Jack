@@ -11,9 +11,10 @@ class Deck:
         self.cards += [Card("diamond", i) for i in range(13)]
 
     def shuffle(self):
-        #print(self.cards)
         # Change the order of the cards to simulate a shuffle
         random.shuffle(self.cards)
-        #print(self.cards)
-        return self.cards
+
+    def pop(self):
+        # Remove the top card from the deck
+        return self.cards.pop()
 
