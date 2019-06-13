@@ -10,6 +10,10 @@ class Player:
         # Add the new card to the player's hand
         self.cards.append(card)
 
+    def remove_card(self):
+        # Remove a card from the player's hand
+        self.cards.pop()
+
     def print_cards(self):
         for card in self.cards:
             print(card)

@@ -11,3 +11,6 @@ class Dealer:
     def deal(self):
         # Take the card on the top of the deck and remove
         return self.deck.pop()
+
+    def count_cards(self):
+        return len(self.cards)

@@ -18,3 +18,6 @@ class Deck:
         # Remove the top card from the deck
         return self.cards.pop()
 
+    #def get_cards_left(self):
+    #    return len(self.cards)
+

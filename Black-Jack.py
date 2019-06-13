@@ -3,7 +3,8 @@ from player import Player
 import sys
 
 # Available game types: battle, blackjack
-game_type = "blackjack"
+print("Which game do you want to play?")
+game_type = input("Type 'battle' or 'blackjack': ")
 
 # Initialize a dealer object
 dealer = Dealer()
@@ -49,14 +50,40 @@ if (game_type == "battle"):
 
     player1_wins = 0
     player2_wins = 0
-    if (player1_total > player2_total):
-        player1_wins += 1
-    elif (player2_total > player1_total):
-        player2_wins += 1
-    else: 
-        pass
-    print("Player 1 wins: {}".format(player1_wins))
-    print("Player 2 wins: {}".format(player2_wins))
+    cards_left = dealer.count_cards()
+
+    while (cards_left > 0):
+
+        if (player1_total > player2_total):
+            player1_wins += 1
+        elif (player2_total > player1_total):
+            player2_wins += 1
+        else: 
+            pass
+
+        print("Player 1 wins: {}".format(player1_wins))
+        print("Player 2 wins: {}".format(player2_wins))
+
+        # Receive a new card from the dealer
+        player1.remove_card()
+        new_card = dealer.deal()
+        player1.receive_card(new_card)
+        player2.remove_card()
+        new_card = dealer.deal()
+        player2.receive_card(new_card)
+
+        print("Player 1:")
+        player1.print_cards()
+        player1_total = player1.add_cards()
+        print("Player 1 Total = {}".format(player1_total))
+        print("Player 2:")
+        player2.print_cards()
+        player2_total = player2.add_cards()
+        print("Player 2 Total = {}".format(player2_total))
+        print("\n")
+
+        # Re-count the number of cards left
+        cards_left = dealer.count_cards()
 
 elif (game_type == "blackjack"):
 
