@@ -13,3 +13,17 @@ class Player:
     def print_cards(self):
         for card in self.cards:
             print(card)
+
+    def add_cards(self):
+        total = 0
+        for card in self.cards:
+            total += card.value
+        return total
+
+    def make_decision(self):
+        decision = "a"
+        while ((decision != "s") and (decision != "h")):
+            decision = input("Type 's' for stand, or 'h' for hit: ")
+            if ((decision != "s") and (decision != "h")):
+                print("Incorrect input")
+        return decision
