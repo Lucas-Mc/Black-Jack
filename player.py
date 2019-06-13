@@ -1,30 +1,18 @@
 from card import Card
+from cardlist import Cardlist
 
-class Player:
+class Player(Cardlist):
 
     def __init__(self):
         # Each player starts with an empty hand
-        self.cards = []
+        Cardlist.__init__(self,0)
 
     def receive_card(self,card):
         # Add the new card to the player's hand
         self.cards.append(card)
 
-    def remove_card(self):
-        # Remove a card from the player's hand
-        self.cards.pop()
-
-    def print_cards(self):
-        for card in self.cards:
-            print(card)
-
-    def add_cards(self):
-        total = 0
-        for card in self.cards:
-            total += card.value
-        return total
-
     def make_decision(self):
+        # Decide between stand ('s') and hit ('h') 
         decision = "a"
         while ((decision != "s") and (decision != "h")):
             decision = input("Type 's' for stand, or 'h' for hit: ")
