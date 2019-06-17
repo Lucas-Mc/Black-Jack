@@ -17,17 +17,25 @@ class Cardlist:
 
     def remove_card(self):
         # Remove the top card from the deck
+        self.no_of_cards -= 1
         return self.cards.pop()
+
+    def give_card(self):
+        # Remove the top card from the deck
+        self.no_of_cards += 1
+        return self.cards[0]
 
     def count_cards(self):
         # Return the total number of cards in the deck
         return self.no_of_cards
 
     def print_cards(self):
+        # Display each of the cards in the current deck
         for card in self.cards:
             print(card)
 
     def add_cards(self):
+        # Determine the sum of all the cards in the deck
         total = 0
         for card in self.cards:
             total += card.value

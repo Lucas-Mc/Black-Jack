@@ -15,9 +15,9 @@ player2 = Player()
 
 # Receive a new card from the dealer
 new_card = dealer.deal()
-player1.receive_card(new_card)
+player1.give_card(new_card)
 new_card = dealer.deal()
-player2.receive_card(new_card)
+player2.give_card(new_card)
 
 # Show their hands after one card each
 print("\n")
@@ -30,9 +30,9 @@ print("\n")
 
 # Receive a new card from the dealer
 new_card = dealer.deal()
-player1.receive_card(new_card)
+player1.give_card(new_card)
 new_card = dealer.deal()
-player2.receive_card(new_card)
+player2.give_card(new_card)
 
 # Show their hands after two cards each
 print("Second Deal:")
@@ -50,7 +50,9 @@ if (game_type == "battle"):
 
     player1_wins = 0
     player2_wins = 0
-    cards_left = dealer.count_cards()
+    print(player1.count_cards())
+    print(player2.count_cards())
+    cards_left = 0#dealer.deck.count_cards()
 
     while (cards_left > 0):
 
@@ -67,10 +69,10 @@ if (game_type == "battle"):
         # Receive a new card from the dealer
         player1.remove_card()
         new_card = dealer.deal()
-        player1.receive_card(new_card)
+        player1.give_card(new_card)
         player2.remove_card()
         new_card = dealer.deal()
-        player2.receive_card(new_card)
+        player2.give_card(new_card)
 
         print("Player 1:")
         player1.print_cards()
@@ -83,7 +85,7 @@ if (game_type == "battle"):
         print("\n")
 
         # Re-count the number of cards left
-        cards_left = dealer.count_cards()
+        cards_left = dealer.deck.count_cards()
 
 elif (game_type == "blackjack"):
 
@@ -114,7 +116,7 @@ elif (game_type == "blackjack"):
             while (player1_decision == "h"):
 
                 new_card = dealer.deal()
-                player1.receive_card(new_card)
+                player1.give_card(new_card)
                 print("Player 1:")
                 player1.print_cards()
                 player1_total = player1.add_cards()
@@ -141,7 +143,7 @@ elif (game_type == "blackjack"):
             while (player2_decision == "h"):
 
                 new_card = dealer.deal()
-                player2.receive_card(new_card)
+                player2.give_card(new_card)
                 print("Player 2:")
                 player2.print_cards()
                 player2_total = player2.add_cards()

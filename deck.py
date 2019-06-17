@@ -1,6 +1,4 @@
-from card import Card
 from cardlist import Cardlist
-import random
 
 class Deck(Cardlist):
     
