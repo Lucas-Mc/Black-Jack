@@ -10,18 +10,24 @@ class CardList:
         self.cards = []
 
     def add_card(self, card):
+        """
+        Adds a input card to the card list
+        """
+        #TODO: add a safety check on input
         self.cards.append(card)
 
     def pop_card(self):
         """
         Return the top card on the deck and remove it from the card list
         """
+        #TODO: handle errors like no cards available
         return self.cards.pop()
 
     def print_cards(self):
         """
         Print info for each the cards in the deck
         """
+        #TODO: handle errors like no cards available
         for card in self.cards:
             print(card)
 
