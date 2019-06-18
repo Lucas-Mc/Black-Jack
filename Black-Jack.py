@@ -5,6 +5,7 @@ import sys
 # Available game types: battle, blackjack
 print("Which game do you want to play?")
 game_type = input("Type 'battle' or 'blackjack': ")
+# TODO: Add a safety check here... what if the user enters something other than battle or blackjack?
 
 # Initialize a dealer object
 dealer = Dealer()
@@ -13,46 +14,44 @@ dealer = Dealer()
 player1 = Player()
 player2 = Player()
 
-# Receive a new card from the dealer
-new_card = dealer.deal()
-player1.give_card(new_card)
-new_card = dealer.deal()
-player2.give_card(new_card)
 
-# Show their hands after one card each
-print("\n")
-print("First Deal:")
-print("Player 1:")
-player1.print_cards()
-print("Player 2:")
-player2.print_cards()
-print("\n")
+if game_type == 'battle':
+    # Receive a new card from the dealer
+    player1.give_card(dealer.deal())
+    player2.give_card(dealer.deal())
 
-# Receive a new card from the dealer
-new_card = dealer.deal()
-player1.give_card(new_card)
-new_card = dealer.deal()
-player2.give_card(new_card)
+    # Show their hands after one card each
+    print("\n")
+    print("First Deal:")
+    print("Player 1:")
+    player1.print_cards()
+    print("Player 2:")
+    player2.print_cards()
+    print("\n")
 
-# Show their hands after two cards each
-print("Second Deal:")
-print("Player 1:")
-player1.print_cards()
-player1_total = player1.add_cards()
-print("Player 1 Total = {}".format(player1_total))
-print("Player 2:")
-player2.print_cards()
-player2_total = player2.add_cards()
-print("Player 2 Total = {}".format(player2_total))
-print("\n")
+    # Receive a new card from the dealer
+    new_card = dealer.deal()
+    player1.give_card(new_card)
+    new_card = dealer.deal()
+    player2.give_card(new_card)
 
-if (game_type == "battle"):
+    # Show their hands after two cards each
+    print("Second Deal:")
+    print("Player 1:")
+    player1.print_cards()
+    player1_total = player1.add_cards()
+    print("Player 1 Total = {}".format(player1_total))
+    print("Player 2:")
+    player2.print_cards()
+    player2_total = player2.add_cards()
+    print("Player 2 Total = {}".format(player2_total))
+    print("\n")
 
     player1_wins = 0
     player2_wins = 0
     print(player1.count_cards())
     print(player2.count_cards())
-    cards_left = 0#dealer.deck.count_cards()
+    cards_left = 0  # dealer.deck.count_cards()
 
     while (cards_left > 0):
 
@@ -60,7 +59,7 @@ if (game_type == "battle"):
             player1_wins += 1
         elif (player2_total > player1_total):
             player2_wins += 1
-        else: 
+        else:
             pass
 
         print("Player 1 wins: {}".format(player1_wins))
@@ -87,7 +86,39 @@ if (game_type == "battle"):
         # Re-count the number of cards left
         cards_left = dealer.deck.count_cards()
 
-elif (game_type == "blackjack"):
+
+if game_type == 'blackjack':
+
+    # Receive a new card from the dealer
+    player1.give_card(dealer.deal())
+    player2.give_card(dealer.deal())
+
+    # Show their hands after one card each
+    print("\n")
+    print("First Deal:")
+    print("Player 1:")
+    player1.print_cards()
+    print("Player 2:")
+    player2.print_cards()
+    print("\n")
+
+    # Receive a new card from the dealer
+    new_card = dealer.deal()
+    player1.give_card(new_card)
+    new_card = dealer.deal()
+    player2.give_card(new_card)
+
+    # Show their hands after two cards each
+    print("Second Deal:")
+    print("Player 1:")
+    player1.print_cards()
+    player1_total = player1.add_cards()
+    print("Player 1 Total = {}".format(player1_total))
+    print("Player 2:")
+    player2.print_cards()
+    player2_total = player2.add_cards()
+    print("Player 2 Total = {}".format(player2_total))
+    print("\n")
 
     if (player1_total > 21):
 
