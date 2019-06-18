@@ -1,43 +1,44 @@
-from card import Card
 import random
 
-class Cardlist:
+class CardList:
+    """
+    CardList is a container object used for managing a list of cards
+    during a card game.
+    """
+    def __init__(self):
+        # initialize the card list as an empty list
+        self.cards = []
 
-    def __init__(self,no_of_cards):
-        # Set a variable to the number of cards in the deck
-        self.no_of_cards = no_of_cards
-        # Create a deck of cards: 52 split 4 ways with heart, club, spade, and diamond suit
-        self.cards = [Card("heart", i) for i in range(13)]
-        self.cards += [Card("club", i) for i in range(13)]
-        self.cards += [Card("spade", i) for i in range(13)]
-        self.cards += [Card("diamond", i) for i in range(13)]
-        # Reduce the full deck to the desired number of cards
-        index_list = random.sample(range(52), no_of_cards)
-        self.cards = [self.cards[index_list[i]] for i in range(len(index_list))]
+    def add_card(self, card):
+        self.cards.append(card)
 
-    def remove_card(self):
-        # Remove the top card from the deck
-        self.no_of_cards -= 1
+    def pop_card(self):
+        """
+        Return the top card on the deck and remove it from the card list
+        """
         return self.cards.pop()
 
-    def give_card(self):
-        # Remove the top card from the deck
-        self.no_of_cards += 1
-        return self.cards[0]
-
-    def count_cards(self):
-        # Return the total number of cards in the deck
-        return self.no_of_cards
-
     def print_cards(self):
-        # Display each of the cards in the current deck
+        """
+        Print info for each the cards in the deck
+        """
         for card in self.cards:
             print(card)
 
-    def add_cards(self):
-        # Determine the sum of all the cards in the deck
-        total = 0
-        for card in self.cards:
-            total += card.value
-        return total
-        
+    def shuffle(self):
+        index_list = random.sample(range(self.number_of_cards), self.number_of_cards)
+        self.cards = [self.cards[index] for index in index_list]
+
+    @property
+    def value(self):
+        """
+        Calculate the sum of all cards in the deck
+        """
+        return sum([card.value for card in self.cards])
+
+    @property
+    def number_of_cards(self):
+        """
+        Return the number of cards in the deck
+        """
+        return len(self.cards)
