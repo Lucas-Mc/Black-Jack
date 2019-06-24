@@ -17,8 +17,8 @@ player2 = Player()
 
 if game_type == 'battle':
     # Receive a new card from the dealer
-    player1.give_card(dealer.deal())
-    player2.give_card(dealer.deal())
+    player1.receive_card(dealer.deal())
+    player2.receive_card(dealer.deal())
 
     # Show their hands after one card each
     print("\n")
@@ -31,26 +31,26 @@ if game_type == 'battle':
 
     # Receive a new card from the dealer
     new_card = dealer.deal()
-    player1.give_card(new_card)
+    player1.receive_card(new_card)
     new_card = dealer.deal()
-    player2.give_card(new_card)
+    player2.receive_card(new_card)
 
     # Show their hands after two cards each
     print("Second Deal:")
     print("Player 1:")
     player1.print_cards()
-    player1_total = player1.add_cards()
+    player1_total = player1.value
     print("Player 1 Total = {}".format(player1_total))
     print("Player 2:")
     player2.print_cards()
-    player2_total = player2.add_cards()
+    player2_total = player2.value
     print("Player 2 Total = {}".format(player2_total))
     print("\n")
 
     player1_wins = 0
     player2_wins = 0
-    print(player1.count_cards())
-    print(player2.count_cards())
+    print(player1.value)
+    print(player2.value)
     cards_left = 0  # dealer.deck.count_cards()
 
     while (cards_left > 0):
@@ -66,32 +66,32 @@ if game_type == 'battle':
         print("Player 2 wins: {}".format(player2_wins))
 
         # Receive a new card from the dealer
-        player1.remove_card()
+        player1.pop_card()
         new_card = dealer.deal()
-        player1.give_card(new_card)
-        player2.remove_card()
+        player1.receive_card(new_card)
+        player2.pop_card()
         new_card = dealer.deal()
-        player2.give_card(new_card)
+        player2.receive_card(new_card)
 
         print("Player 1:")
         player1.print_cards()
-        player1_total = player1.add_cards()
+        player1_total = player1.value
         print("Player 1 Total = {}".format(player1_total))
         print("Player 2:")
         player2.print_cards()
-        player2_total = player2.add_cards()
+        player2_total = player2.value
         print("Player 2 Total = {}".format(player2_total))
         print("\n")
 
         # Re-count the number of cards left
-        cards_left = dealer.deck.count_cards()
+        cards_left = dealer.deck.value
 
 
 if game_type == 'blackjack':
 
     # Receive a new card from the dealer
-    player1.give_card(dealer.deal())
-    player2.give_card(dealer.deal())
+    player1.receive_card(dealer.deal())
+    player2.receive_card(dealer.deal())
 
     # Show their hands after one card each
     print("\n")
@@ -104,19 +104,19 @@ if game_type == 'blackjack':
 
     # Receive a new card from the dealer
     new_card = dealer.deal()
-    player1.give_card(new_card)
+    player1.receive_card(new_card)
     new_card = dealer.deal()
-    player2.give_card(new_card)
+    player2.receive_card(new_card)
 
     # Show their hands after two cards each
     print("Second Deal:")
     print("Player 1:")
     player1.print_cards()
-    player1_total = player1.add_cards()
+    player1_total = player1.value
     print("Player 1 Total = {}".format(player1_total))
     print("Player 2:")
     player2.print_cards()
-    player2_total = player2.add_cards()
+    player2_total = player2.value
     print("Player 2 Total = {}".format(player2_total))
     print("\n")
 
@@ -139,7 +139,7 @@ if game_type == 'blackjack':
 
             print("Player 1:")
             player1.print_cards()
-            player1_total = player1.add_cards()
+            player1_total = player1.value
             print("Player 1 Total = {}".format(player1_total))
 
         elif (player1_decision == "h"):
@@ -147,10 +147,10 @@ if game_type == 'blackjack':
             while (player1_decision == "h"):
 
                 new_card = dealer.deal()
-                player1.give_card(new_card)
+                player1.receive_card(new_card)
                 print("Player 1:")
                 player1.print_cards()
-                player1_total = player1.add_cards()
+                player1_total = player1.value
                 print("Player 1 Total = {}".format(player1_total))
 
                 if (player1_total > 21):
@@ -166,7 +166,7 @@ if game_type == 'blackjack':
 
             print("Player 2:")
             player2.print_cards()
-            player2_total = player2.add_cards()
+            player2_total = player2.value
             print("Player 2 Total = {}".format(player2_total))
 
         elif (player2_decision == "h"):
@@ -174,10 +174,10 @@ if game_type == 'blackjack':
             while (player2_decision == "h"):
 
                 new_card = dealer.deal()
-                player2.give_card(new_card)
+                player2.receive_card(new_card)
                 print("Player 2:")
                 player2.print_cards()
-                player2_total = player2.add_cards()
+                player2_total = player2.value
                 print("Player 2 Total = {}".format(player2_total))
                             
                 if (player2_total > 21):

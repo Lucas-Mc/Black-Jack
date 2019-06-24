@@ -1,22 +1,22 @@
 from card import Card
-from cardlist import Cardlist
+from cardlist import CardList
 
-class Player(Cardlist):
+class Player(CardList):
 
-    def __init__(self):
-        # Each player starts with an empty hand
-        Cardlist.__init__(self,0)
+  def __init__(self):
+    # Each player starts with an empty hand
+    CardList.__init__(self,0)
 
-    def receive_card(self,card):
-        # Add the new card to the player's hand
-        self.cards.append(card)
-        # Cardlist.no_of_cards += 1
+  def receive_card(self,card):
+    # Add the new card to the player's hand
+    self.cards.append(card)
+    # CardList.no_of_cards += 1
 
-    def make_decision(self):
-        # Decide between stand ('s') and hit ('h') 
-        decision = "a"
-        while ((decision != "s") and (decision != "h")):
-            decision = input("Type 's' for stand, or 'h' for hit: ")
-            if ((decision != "s") and (decision != "h")):
-                print("Incorrect input")
-        return decision
+  def make_decision(self):
+    # Decide between stand ('s') and hit ('h') 
+    decision = "a"
+    while ((decision != "s") and (decision != "h")):
+      decision = input("Type 's' for stand, or 'h' for hit: ")
+      if ((decision != "s") and (decision != "h")):
+        print("Incorrect input")
+    return decision

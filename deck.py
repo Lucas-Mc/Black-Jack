@@ -1,7 +1,7 @@
-from cardlist import Cardlist
+from cardlist import CardList
 
-class Deck(Cardlist):
+class Deck(CardList):
     
-    def __init__(self):
-        Cardlist.__init__(self,52)
+  def __init__(self):
+    CardList.__init__(self,52)
 
