@@ -19,6 +19,15 @@ def print_state(deal_num):
 
   return player1_total,player2_total
 
+def determine_winner(player1_total,player2_total):
+  # Print out the winner based on who has the highest score
+  if (player1_total > player2_total):
+    print('Player 1 wins!')
+    sys.exit()
+  else:
+    print('Player 2 wins!')
+    sys.exit()
+
 # Available game types: battle, blackjack
 print('Which game do you want to play?')
 
@@ -28,9 +37,9 @@ while ((game_type != 'battle') and (game_type != 'blackjack')):
   
   game_type = input("Type 'battle' or 'blackjack': ")
 
-
 # Initialize a dealer object
 dealer = Dealer()
+dealer.deck.shuffle()
 deal_num = 0
 
 # Initialize two players for the game
@@ -39,31 +48,29 @@ player2 = Player()
 
 
 if game_type == 'battle':
-  # Receive a new card from the dealer
-  player1.receive_card(dealer.deal())
-  player2.receive_card(dealer.deal())
-  deal_num += 1
-
-  # Show their hands after one card each
-  player1_total, player2_total = print_state(deal_num)
-
-  # Receive a new card from the dealer
-  new_card = dealer.deal()
-  player1.receive_card(new_card)
-  new_card = dealer.deal()
-  player2.receive_card(new_card)
-  deal_num += 1
-
-  # Show their hands after two cards each
-  player1_total, player2_total = print_state(deal_num)
 
   player1_wins = 0
   player2_wins = 0
-  print(player1.value)
-  print(player2.value)
-  cards_left = 0  # dealer.deck.count_cards()
 
-  while (cards_left > 0):
+  while (dealer.deck.number_of_cards > 1):
+
+    # Receive a new card from the dealer
+    player1.receive_card(dealer.deal())
+    player2.receive_card(dealer.deal())
+    deal_num += 1
+
+    # Show their hands after one card each
+    player1_total, player2_total = print_state(deal_num)
+
+    # Receive a new card from the dealer
+    new_card = dealer.deal()
+    player1.receive_card(new_card)
+    new_card = dealer.deal()
+    player2.receive_card(new_card)
+    deal_num += 1
+
+    # Show their hands after two cards each
+    player1_total, player2_total = print_state(deal_num)
 
     if (player1_total > player2_total):
       player1_wins += 1
@@ -76,19 +83,9 @@ if game_type == 'battle':
     print('Player 2 wins: {}'.format(player2_wins))
 
     # Receive a new card from the dealer
-    player1.pop_card()
-    new_card = dealer.deal()
-    player1.receive_card(new_card)
-    player2.pop_card()
-    new_card = dealer.deal()
-    player2.receive_card(new_card)
-    deal_num += 1
-
-    player1_total, player2_total = print_state(deal_num)
-
-    # Re-count the number of cards left
-    cards_left = dealer.deck.value
-
+    player1.flush_cards()
+    player2.flush_cards()
+      
 
 if game_type == 'blackjack':
 
@@ -159,13 +156,7 @@ if game_type == 'blackjack':
       player2_total = player2.value
       print('Player 2 Total = {}'.format(player2_total))
 
-      print('\n')
-      if (player1_total > player2_total):
-        print('Player 1 wins!')
-        sys.exit()
-      else:
-        print('Player 2 wins!')
-        sys.exit()
+      determine_winner(player1_total,player2_total)
 
     elif (player2_decision == 'h'):
 
@@ -184,3 +175,4 @@ if game_type == 'blackjack':
         else:
           player2_decision = player2.make_decision()
 
+      determine_winner(player1_total,player2_total)

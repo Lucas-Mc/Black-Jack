@@ -19,3 +19,8 @@ class Player(CardList):
       if ((decision != "s") and (decision != "h")):
         print("Incorrect input")
     return decision
+
+  def flush_cards(self):
+    # Remove all the cards in the player's hand
+    for _ in range(self.number_of_cards):
+      self.pop_card()
