@@ -6,45 +6,52 @@ class CardList():
   CardList is a container object used for managing a list of cards
   during a card game.
   """
-  def __init__(self, card_to_start):
-    # initialize the card list as an empty list
-    self.card_to_start = card_to_start
-    self.create_deck(self.card_to_start)
-    # print(self.cards)
-    # self.cards = []
+  def __init__(self, cards_to_start):
+    '''
+    cards_to_start: number of cards to be intialized
+    '''
+    # Initialize the card list as an empty list
+    self.cards_to_start = cards_to_start
+    self.cards = []
+    self.create_deck(self.cards_to_start)
 
   def add_card(self, card):
     """
     Adds a input card to the card list
     """
-    #TODO: add a safety check on input
-    self.cards.append(card)
+    if (isinstance(card,Card)):
+      self.cards.append(card)
+    else:
+      print('This is not the correct card type!')
 
-  def create_deck(self, card_to_start):
-    # Create a deck of cards: 52 split 4 ways with heart, club, spade, and diamond suit	
-    # TODO: make this use the `add_card` method?	
-    self.cards = [Card("heart", i) for i in range(13)]		
-    self.cards += [Card("club", i) for i in range(13)]		
-    self.cards += [Card("spade", i) for i in range(13)]		
-    self.cards += [Card("diamond", i) for i in range(13)]		
+  def create_deck(self, cards_to_start):
+    # Create a deck of cards: 52 split 4 ways with heart, club, spade, and diamond suit		
+    temp_cards = [Card("heart", i) for i in range(13)]		
+    temp_cards += [Card("club", i) for i in range(13)]		
+    temp_cards += [Card("spade", i) for i in range(13)]		
+    temp_cards += [Card("diamond", i) for i in range(13)]		
     # Reduce the full deck to the desired number of cards		
-    index_list = random.sample(range(52), card_to_start)		
-    self.cards = [self.cards[index_list[i]] for i in range(len(index_list))]
+    index_list = random.sample(range(52), cards_to_start)		
+    [self.add_card(temp_cards[index_list[i]]) for i in range(len(index_list))]
 
   def pop_card(self):
     """
     Return the top card on the deck and remove it from the card list
     """
-    #TODO: handle errors like no cards available
-    return self.cards.pop()
+    if (self.number_of_cards == 0):
+      print('There are no cards left in this deck!')
+    else:
+      return self.cards.pop()
 
   def print_cards(self):
     """
     Print info for each the cards in the deck
     """
-    #TODO: handle errors like no cards available
-    for card in self.cards:
-      print(card)
+    if (self.number_of_cards == 0):
+      print('There are no cards left in this deck!')
+    else:
+      for card in self.cards:
+        print(card)
 
   def shuffle(self):
     index_list = random.sample(range(self.number_of_cards), self.number_of_cards)

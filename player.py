@@ -10,7 +10,6 @@ class Player(CardList):
   def receive_card(self,card):
     # Add the new card to the player's hand
     self.cards.append(card)
-    # CardList.no_of_cards += 1
 
   def make_decision(self):
     # Decide between stand ('s') and hit ('h') 
