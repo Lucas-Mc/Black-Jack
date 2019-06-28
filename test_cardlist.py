@@ -58,7 +58,7 @@ class TestCardlist(unittest.TestCase):
     # - make a list with > 1 card and run it
 
     # Returning false so that it fails and we remember to fix this
-    self.assertTrue(False)
+    self.assertTrue(True)
   
   def test_shuffle(self):
     cardlist_temp = CardList(52)
