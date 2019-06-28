@@ -1,7 +1,7 @@
 import unittest
 from dealer import Dealer
 
-class TestCardlist(unittest.TestCase):
+class TestDealer(unittest.TestCase):
 
   def test_deal(self):
     dealer = Dealer()
