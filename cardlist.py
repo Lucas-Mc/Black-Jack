@@ -25,6 +25,8 @@ class CardList():
       print('This is not the correct card type!')
 
   def create_deck(self, cards_to_start):
+    # TODO: this function should be in the Deck class, a card list should know anything
+    #  about what makes up a deck, this is just a storage mechanism
     # Create a deck of cards: 52 split 4 ways with heart, club, spade, and diamond suit		
     temp_cards = [Card("heart", i) for i in range(13)]		
     temp_cards += [Card("club", i) for i in range(13)]		
@@ -38,8 +40,8 @@ class CardList():
     """
     Return the top card on the deck and remove it from the card list
     """
-    if (self.number_of_cards == 0):
-      print('There are no cards left in this deck!')
+    if self.number_of_cards == 0:
+      return None
     else:
       return self.cards.pop()
 

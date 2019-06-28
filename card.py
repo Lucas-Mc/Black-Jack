@@ -17,4 +17,6 @@ class Card:
     # Print the object in the desired format
     return "{} of {}".format(self.value, self.suit)
 
+  def __eq__(self, arg):
+    return self.value == arg.value and self.suit == arg.suit
         
