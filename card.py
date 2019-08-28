@@ -11,7 +11,7 @@ class Card:
 
   def get_value(self):
     # Get the value of the card
-    return self.value
+    return self.value + 1
 
   def __str__(self):
     # Print the object in the desired format
