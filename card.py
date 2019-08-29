@@ -20,3 +20,4 @@ class Card:
   def __eq__(self, arg):
     return self.value == arg.value and self.suit == arg.suit
         
+        
